@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package advice_service;
+
+service AdviceService {
+    rpc Ask (Question) returns (Answer) {}
+}
+
+message Question {
+    string content = 1;
+}
+
+message Answer {
+    string content = 1;
+}
