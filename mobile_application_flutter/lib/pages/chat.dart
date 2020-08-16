@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_meet_kai_clone/predefined/enum_border_radius.dart';
 import 'package:flutter_meet_kai_clone/predefined/enum_colors.dart';
+import 'package:flutter_meet_kai_clone/services/advice_service.dart';
 import 'package:flutter_meet_kai_clone/widgets/touchable_icon.dart';
 import 'package:flutter_meet_kai_clone/widgets/v_box.dart';
 
@@ -42,6 +43,12 @@ class _ChatScreenState extends State<ChatScreen> {
 }
 
 class _ListenButton extends StatefulWidget {
+  final String latestQuestion;
+  final Function(String) handleSuccess, handleFailure;
+
+  const _ListenButton(
+      {Key key, this.latestQuestion, this.handleSuccess, this.handleFailure})
+      : super(key: key);
   @override
   __ListenButtonState createState() => __ListenButtonState();
 }
@@ -66,6 +73,12 @@ class __ListenButtonState extends State<_ListenButton> {
     });
   }
 
+  _handleTap() async {
+    await AdviceService().getAdvice(widget.latestQuestion,
+        handleSuccess: widget.handleSuccess,
+        handleFailure: widget.handleFailure);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -76,7 +89,7 @@ class __ListenButtonState extends State<_ListenButton> {
       ),
       onTapDown: _handleTapDown,
       onTapUp: _handleTapUp,
-      onTap: () {},
+      onTap: _handleTap,
     );
   }
 }
