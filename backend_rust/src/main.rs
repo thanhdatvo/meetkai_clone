@@ -1,5 +1,6 @@
 use tonic::{Request, Response, Status};
 use tonic::transport::Server;
+use serde::Deserialize;
 
 pub mod advice_service {
     tonic::include_proto!("advice_service");
@@ -22,9 +23,22 @@ impl AdviceService for MyAdviceService {
     } 
 
 }
+#[derive(Deserialize, Debug)]
+struct Body {
+    data: String
+}
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let client = reqwest::Client::new();
+    let res = client.post("http://httpbin.org/post").body("exact body").send().await?;
+  
+    println!("Status: {}", res.status());
+    
+    let body = res.json::<Body>().await?;
+    print!("Body {}", body.data);
+
+
     let address = "127.0.0.1:50051".parse().unwrap();
     let advice_service = MyAdviceService::default();
     Server::builder()
