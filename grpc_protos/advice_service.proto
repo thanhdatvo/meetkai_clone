@@ -8,8 +8,15 @@ service AdviceService {
 
 message Question {
     string content = 1;
+    int32 user_id = 2;
 }
 
 message Answer {
-    string content = 1;
+    repeated Rating rates = 1;
+}
+
+message Rating {
+    string title = 1; 
+    int32 id = 2;
+    float est = 3; 
 }

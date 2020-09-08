@@ -15,21 +15,23 @@ def convert_int(x):
 
 def retrive_small_movie_metadata():
     pkl_filename = "ml_models/pickle_small_movie_metadata.pkl"
-    links_small_file = 'ml_data/links_small.csv'
-    moview_metadata_file = 'ml_data/movies_metadata.csv'
+    
 
     if path.exists(pkl_filename):
         # Load smd from pickle file
         with open(pkl_filename, 'rb') as file:
             smd = pickle.load(file)
     else:
+        links_small_file = 'ml_database/links_small.csv'
+        movies_metadata_file = 'ml_database/movies_metadata.csv'
+
         # Link small
         links_small = pd.read_csv(links_small_file)
         links_small = links_small[links_small['tmdbId']
                                   .notnull()]['tmdbId'].astype('int')
 
         # Movie Metadata file
-        md = pd.read_csv(moview_metadata_file)
+        md = pd.read_csv(movies_metadata_file)
         md = md.drop([19730, 29503, 35587])
         md['id'] = md['id'].astype('int')
         # md.shape #(45463, 24)
@@ -85,7 +87,7 @@ def train_model():
             model = pickle.load(file)
     else:
         reader = Reader()
-        rating_file = 'ml_data/ratings_small.csv'
+        rating_file = 'ml_database/ratings_small.csv'
         ratings = pd.read_csv(rating_file)
         data = Dataset.load_from_df(
             ratings[['userId', 'movieId', 'rating']], reader)

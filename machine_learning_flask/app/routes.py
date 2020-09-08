@@ -47,7 +47,7 @@ def suggest_movies(user_id, title):
     # movie_indices
 
     # Compute the rating for each movie
-    links_small_file = 'ml_data/links_small.csv'
+    links_small_file = 'ml_database/links_small.csv'
     id_map = pd.read_csv(links_small_file)[['movieId', 'tmdbId']]
     id_map = id_map[id_map['tmdbId'].notnull()]
     id_map['tmdbId'] = id_map['tmdbId'].apply(convert_int)

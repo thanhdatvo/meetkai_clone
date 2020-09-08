@@ -44,4 +44,15 @@ app.*.map.json
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
 
-lib/generated/
+
+*.lock
+*.g.dart
+
+*.pb.dart
+*.pbenum.dart
+*.pbgrpc.dart
+*.pbjson.dart
+
+ios/Flutter/flutter_export_environment.sh
+
+run.sh

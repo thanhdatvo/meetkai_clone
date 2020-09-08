@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      built_value_generator|built_value:
+        generate_for:
+          - lib/modals/built_value/**.dart
+      built_stream_generator|built_stream:
+        generate_for:
+          - lib/streams/built_single_stream/**.dart
+          - lib/streams/built_composed_streams/**.dart
