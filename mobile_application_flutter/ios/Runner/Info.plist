@@ -41,5 +41,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+<!--speech to text start-->
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>We need your permission to record your voice</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>We need your permission to record your voice</string>
+<!--speech to text end-->
 </dict>
 </plist>

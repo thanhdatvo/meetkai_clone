@@ -35,7 +35,6 @@ class PopUpState extends State<PopUp> {
   }
 
   setMovies(List<Movie> movies) {
-    movies.sort((a, b) => a.est < b.est ? 1 : -1);
     setState(() {
       _movies = movies;
     });
@@ -111,6 +110,7 @@ class PopUpState extends State<PopUp> {
                           const _WatchMoreButton(),
                           VBox(15),
                           _OtherOptions(otherMovies),
+                          VBox(15),
                         ],
                       ),
                     ),
@@ -138,6 +138,7 @@ class _OtherOptions extends StatelessWidget {
               ],
             ))
         .toList();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -176,7 +177,7 @@ class _OtherOptionsItem extends StatelessWidget {
         ),
         VBox(3),
         Text(
-          movie.title.substring(0, 10),
+          "${movie.title}          ".substring(0, 10),
           style: TextStyle(
             fontSize: 14,
             color: _cyan,

@@ -1,0 +1,4 @@
+enum MessagePosition{
+  LEFT,
+  RIGHT
+}

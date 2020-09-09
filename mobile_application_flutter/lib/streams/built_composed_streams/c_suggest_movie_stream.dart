@@ -72,7 +72,7 @@ class CSuggestMoviesStream extends _CSuggestMoviesStreamOrigin {
         }
         yield state;
       }
-      await Future.delayed(Duration(seconds: 2));
+      
       yield CSuggestMoviesSucceed(CSuggestMoviesResults(movies));
     } catch (error) {
       yield CSuggestMoviesError.init(errorLocation, error, params);
