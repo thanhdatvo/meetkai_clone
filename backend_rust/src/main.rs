@@ -38,7 +38,7 @@ async fn get_data(
     );
     let res = client.get(&url).send().await?;
 
-    println!("Status: {:?}", res);
+    println!("Status: {:#?}", res);
 
     let body = res.json::<Vec<Data>>().await?;
     let body = body
